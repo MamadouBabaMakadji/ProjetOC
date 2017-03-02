@@ -2,6 +2,7 @@ package projetoc.m1.miage.paris10;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by MBM on 02/03/2017.
@@ -9,7 +10,8 @@ import java.util.List;
 public class AlgoGlouton {
     private Donnees donnees;
     private int[] rapportUtilitePoids;
-    private int utiliteTotal;
+    private int utiliteTotalAlgoGlouton;
+    private int majorant;
 
     public AlgoGlouton(Donnees donnees) {
         this.donnees = donnees;
@@ -77,9 +79,12 @@ public class AlgoGlouton {
                 }
             }
         }
-        utiliteTotal = wisac1 + wisac2;
+        int poidsDispo = (donnees.getP()+donnees.getQ())-(Ps1+Ps2);
+        Random r = new Random();
+        int nb = r.nextInt(4-1+1)+1;
+        utiliteTotalAlgoGlouton = wisac1 + wisac2;
         System.out.println("");
-        System.out.println("Utilité total des objets amenés : "+utiliteTotal);
+        System.out.println("Utilité total des objets amenés : "+utiliteTotalAlgoGlouton);
         System.out.println("Les objets dans le sac 1");
         System.out.print("SAC 1 => \t");
         for(int i=0;i<sac1.size(); i++){
@@ -91,6 +96,14 @@ public class AlgoGlouton {
         for(int i=0;i<sac2.size(); i++){
             System.out.print(sac2.get(i)+"\t");
         }
+        majorant = nb + utiliteTotalAlgoGlouton;
+        /*System.out.println("");
+        System.out.println("Valeur evaluation par excès "+majorant);*/
     }
+   /* public int EvalExces(){
+
+        return majorant;
+    }*/
+
 
 }
